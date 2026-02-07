@@ -1,0 +1,29 @@
+<h2 class="text-2xl font-semibold mb-4">Lista de Especialidades</h2>
+
+@let specialities = (specialities$ | async);
+
+@if (!specialities) {
+    <div class="p-4 text-sm">Cargando.</div>
+}
+
+@if (specialities && specialities.length > 0) {
+   <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+    <table class="w-full text-sm text-left text-body">
+      <thead class="text-sm text-body bg-neutral-secondary-soft border-b border-default">
+        <tr>
+          <th class="px-6 py-3 font-medium">Nombre</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (s of specialities; track $index) {
+          <tr class="bg-neutral-primary border-b border-default hover:bg-neutral-secondary-soft transition">
+            <td class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+              {{ s.nombre }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

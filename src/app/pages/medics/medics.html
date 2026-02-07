@@ -1,1 +1,45 @@
-<p>medics works!</p>
+<h2 class="text-2xl font-semibold mb-4">Médicos</h2>
+
+@let medics = (medics$ | async);
+
+@if (!medics) {
+  <div class="p-4 text-sm">Cargando médicos. Por favor, espere.</div>
+}
+
+@if (medics && medics.length > 0) {
+  <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+    <table class="w-full text-sm text-left text-body">
+      <thead class="text-sm text-body bg-neutral-secondary-soft border-b border-default">
+        <tr>
+          <th class="px-6 py-3 font-medium">Nombre</th>
+          <th class="px-6 py-3 font-medium">Apellido</th>
+          <th class="px-6 py-3 font-medium">Especialidad</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (m of medics; track $index) {
+          <tr class="bg-neutral-primary border-b border-default hover:bg-neutral-secondary-soft transition">
+            <td class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+              {{ m.nombre }}
+            </td>
+            <td class="px-6 py-4">
+              {{ m.apellido }}
+            </td>
+            <td class="px-6 py-4">
+              {{ m.especialidad }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+
+@if (medics && medics.length === 0) {
+  <div class="p-4 text-sm">No hay médicos cargados.</div>
+}
+
+@if (error) {
+  <div class="p-4 text-sm text-red-600">{{ error }}</div>
+}
