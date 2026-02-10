@@ -4,26 +4,24 @@
 
 @if (!specialities) {
     <div class="p-4 text-sm">Cargando.</div>
+    <span class="loading loading-dots loading-xl"></span>
+
+
 }
 
 @if (specialities && specialities.length > 0) {
-   <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
-    <table class="w-full text-sm text-left text-body">
-      <thead class="text-sm text-body bg-neutral-secondary-soft border-b border-default">
-        <tr>
-          <th class="px-6 py-3 font-medium">Nombre</th>
-        </tr>
-      </thead>
+  <div class="space-y-6">
 
-      <tbody>
         @for (s of specialities; track $index) {
-          <tr class="bg-neutral-primary border-b border-default hover:bg-neutral-secondary-soft transition">
-            <td class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-              {{ s.nombre }}
-            </td>
-          </tr>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition">
+            <div class="flex items-start justify-between gap-6">
+              <div class="space-y-1">
+                <h3 class="text-lg font-semibold text-slate-900">
+                  {{ s.nombre }}
+                </h3>
+              </div>
+            </div>
+          </div>
         }
-      </tbody>
-    </table>
   </div>
 }

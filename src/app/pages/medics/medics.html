@@ -4,37 +4,44 @@
 
 @if (!medics) {
   <div class="p-4 text-sm">Cargando médicos. Por favor, espere.</div>
+  <span class="loading loading-dots loading-xl"></span>
 }
 
 @if (medics && medics.length > 0) {
-  <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
-    <table class="w-full text-sm text-left text-body">
-      <thead class="text-sm text-body bg-neutral-secondary-soft border-b border-default">
-        <tr>
-          <th class="px-6 py-3 font-medium">Nombre</th>
-          <th class="px-6 py-3 font-medium">Apellido</th>
-          <th class="px-6 py-3 font-medium">Especialidad</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        @for (m of medics; track $index) {
-          <tr class="bg-neutral-primary border-b border-default hover:bg-neutral-secondary-soft transition">
-            <td class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-              {{ m.nombre }}
-            </td>
-            <td class="px-6 py-4">
-              {{ m.apellido }}
-            </td>
-            <td class="px-6 py-4">
+  <div class="space-y-6">
+
+    @for (m of medics; track $index) {
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition">
+
+        <div class="flex items-start justify-between gap-6">
+
+          <!-- Info principal -->
+          <div class="space-y-1">
+            <h3 class="text-lg font-semibold text-slate-900">
+              {{ m.nombre }} {{ m.apellido }}
+            </h3>
+
+            <p class="text-sm text-slate-600">
               {{ m.especialidad }}
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+            </p>
+          </div>
+
+          <!-- Acción opcional -->
+          <button
+            class="text-sm font-medium text-slate-700 border border-slate-300 px-4 py-2 rounded-lg hover:bg-slate-100 transition">
+            Ver perfil
+          </button>
+
+        </div>
+
+      </div>
+    }
+
   </div>
+
 }
+
 
 @if (medics && medics.length === 0) {
   <div class="p-4 text-sm">No hay médicos cargados.</div>
@@ -43,3 +50,9 @@
 @if (error) {
   <div class="p-4 text-sm text-red-600">{{ error }}</div>
 }
+
+
+<!-- <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition">
+  <h3 class="text-lg font-semibold mb-2">Título</h3>
+  <p class="text-slate-600 text-sm">Contenido...</p>
+</div> -->
